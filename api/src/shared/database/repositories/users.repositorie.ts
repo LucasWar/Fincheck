@@ -1,17 +1,17 @@
-import { Injectable } from "@nestjs/common";
-import { type Prisma } from '@prisma/client'
+import { Injectable } from '@nestjs/common';
+import { type Prisma } from '@prisma/client';
 
-import { PrismaService } from "../prisma.servive";
+import { PrismaService } from '../prisma.servive';
 
 @Injectable()
 export class UserRepository {
-    constructor(private readonly prismaService:PrismaService) {}
-    
-    create(createDto: Prisma.UserCreateArgs){
-        return this.prismaService.user.create(createDto);
-    }   
+  constructor(private readonly prismaService: PrismaService) {}
 
-    findUnique(findUnique: Prisma.UserFindUniqueArgs){
-        return this.prismaService.user.findUnique(findUnique) 
-    }
+  create(createDto: Prisma.UserCreateArgs) {
+    return this.prismaService.user.create(createDto);
+  }
+
+  findUnique(findUnique: Prisma.UserFindUniqueArgs) {
+    return this.prismaService.user.findUnique(findUnique);
+  }
 }

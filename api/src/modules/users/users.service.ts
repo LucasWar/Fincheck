@@ -1,10 +1,19 @@
 import { ConflictException, Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/shared/database/prisma.servive';
+import { UserRepository } from 'src/shared/database/repositories/users.repositorie';
 
 @Injectable()
 export class UsersService {
-  
-  getUserById(userId: string){
-    return userId;
+  constructor(private readonly userRepo: UserRepository) {}
+
+  getUserById(userId: string) {
+    return this.userRepo.findUnique({
+      where: { id: userId },
+      select: {
+        name: true,
+        email: true,
+      },
+    });
   }
 
   // findAll() {
